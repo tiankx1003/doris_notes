@@ -29,7 +29,7 @@
 # Memory: 6626MiB / 15893MiB
 # Disk: 128GB SSD + 1TB HDD
 
-##### 01. 构建自己的doris编译镜像，大约用时120min
+##### 01. 构建自己的doris编译镜像，大约用时2小时
 # WORK_DIR=$(pwd -P)/doris_ubuntu
 # mkdir -p $WORK_DIR && cd $WORK_DIR
 # git clone -b 2.1.6-rc04 git@github.com:apache/doris.git doris/
@@ -40,7 +40,7 @@
 # nohup docker build -t doris_dev-ubuntu2204:2.1.6-rc04 . \
 #   >> doris_dev-ubuntu2204:2.1.6-rc04.log 2>&1 &
 
-##### 02. 使用构建的镜像编译doris源码，挂载本地的maven仓库和doris源码目录到容器
+##### 02. 使用构建的镜像编译doris源码，挂载本地的maven仓库和doris源码目录到容器, 大约用时3小时
 # docker run -it -d \
 # --name doris_build \
 # -v /your/local/.m2:/root/.m2 \
@@ -84,6 +84,7 @@ RUN wget https://doris-thirdparty-1308700295.cos.ap-beijing.myqcloud.com/tools/n
     && cd /tmp/ && tar -xf node-v12.13.0-linux-x64.tar.gz \
     && cp -r node-v12.13.0-linux-x64/* /usr/local/ \
     && rm -f /tmp/node-v12.13.0-linux-x64.tar.gz && rm -rf node-v12.13.0-linux-x64
+# TODO: npm registry
 
 ## jdk17
 RUN wget https://doris-thirdparty-1308700295.cos.ap-beijing.myqcloud.com/tools/openjdk-17.0.2_linux-x64_bin.tar.gz \
